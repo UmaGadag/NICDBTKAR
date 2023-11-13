@@ -1,0 +1,31 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="masterpage.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>c# corner</title>
+    <link href="css/my.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+    <nav id="nav">
+        <ul> 
+	    <li><a href="home.aspx">Home</a></li>
+            <li><a href="BeneficiaryDetails.aspx">Beneficiary New</a></li>
+	<li><a href="BeneficiaryDetails.aspx">Beneficiary Update</a></li>
+
+        </ul>
+    </nav>
+    
+    <p id="con">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </p>
+    
+    <form id="form1" runat="server">
+    </form>
+</body>
+</html>

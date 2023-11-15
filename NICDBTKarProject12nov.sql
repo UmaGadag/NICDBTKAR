@@ -50,23 +50,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
--- =============================================
--- Author:		Uma.G
--- Create date: 8/Nov/2023
--- Description:	adding datarecords to table 
--- =============================================
-CREATE PROCEDURE sp_User
-@UserName Nvarchar(100),
-@Password Nvarchar(100)
-AS 
-BEGIN
 
-IF EXISTS (Select ID from  USER_MASTER WHERE UserName=@UserName AND Password=@Password)
-BEGIN 
-
-END
-
-END
 
 SET ANSI_NULLS ON
 GO
@@ -77,7 +61,7 @@ GO
 -- Create date: 8/Nov/2023
 -- Description:	adding datarecords to table 
 -- =============================================
-Alter PROCEDURE sp_InsertUpdateBENEFICIARY_DETAILS
+create PROCEDURE sp_InsertUpdateBENEFICIARY_DETAILS
 @BeneficiaryID int =Null,
 @BeneficiaryName nvarchar(100),
 @Address nvarchar(max),
@@ -97,7 +81,7 @@ BEGIN
     Select @SchemeID=SchemeID From SCHEMES_MASTER Where SchemeName=@SchemeName;
 
     -- Insert statements for procedure here
-	IF NOT EXISTS( SELECT BeneficiaryID FROM BENEFICIARY_DETAILS where AadhaarNumber=@AadhaarNumber)
+	IF NOT EXISTS( SELECT BeneficiaryID FROM BENEFICIARY_DETAILS where AadhaarNumber=@AadhaarNumber AND @BeneficiaryID=Null) 
 	BEGIN 
 		INSERT INTO BENEFICIARY_DETAILS
 		(
@@ -119,6 +103,7 @@ BEGIN
 	END
 	ELSE 
 	BEGIN 
+	SELECT @BeneficiaryID=BeneficiaryID FROM BENEFICIARY_DETAILS where AadhaarNumber=@AadhaarNumber
 		Update BENEFICIARY_DETAILS
 		SET DepartmentID=@DeptID,
 		    SchemeID=@SchemeID
@@ -130,7 +115,7 @@ BEGIN
 -- Create date: 8/Nov/2023
 -- Description:	Fetching\Retriving datarecords to table Based on Name And Aadhar Number
 -- =============================================
-Alter PROCEDURE sp_BENEFICIARY_DETAILS_BNA
+create PROCEDURE sp_BENEFICIARY_DETAILS_BNA
 @search nvarchar(100) 
 AS
 BEGIN

@@ -12,13 +12,24 @@ namespace NICDBTKar.DataAccess
     public class DBBeneficiary
     {
 
-        public static bool SaveBeneficiary(string BeneficiaryName,string Address,string AadhaarNumber, string DepartmentName,string SchemeName)
+        public static bool SaveBeneficiary(int Id,string BeneficiaryName,string Address,string AadhaarNumber, string DepartmentName,string SchemeName)
         {
             string strcon = ConfigurationManager.ConnectionStrings["NICDBTKar"].ConnectionString;
             using (SqlConnection con = new SqlConnection(strcon))
             {
                 SqlCommand cmd = new SqlCommand("sp_InsertUpdateBENEFICIARY_DETAILS", con);
                 con.Open();
+                if (Id > 0)
+                {
+                    cmd.Parameters.AddWithValue("@BeneficiaryID", Id);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@BeneficiaryID", null);
+                }
+
+                
+                cmd.Parameters.AddWithValue("@BeneficiaryName", BeneficiaryName);
                 cmd.Parameters.AddWithValue("@BeneficiaryName", BeneficiaryName);
                 cmd.Parameters.AddWithValue("@Address",Address);
                 cmd.Parameters.AddWithValue("@AadhaarNumber",AadhaarNumber);

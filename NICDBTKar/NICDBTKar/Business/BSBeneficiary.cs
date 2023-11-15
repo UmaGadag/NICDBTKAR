@@ -18,10 +18,10 @@ namespace NICDBTKar.Business
 
         
 
-        public bool SaveBeneficiary(string BeneficiaryName,string Address,string AadhaarNumber,string department,string Scheme) // No Parameter  
+        public bool SaveBeneficiary(int id,string BeneficiaryName,string Address,string AadhaarNumber,string department,string Scheme) // No Parameter  
         {
             
-            bool str = DBBeneficiary.SaveBeneficiary(BeneficiaryName, Address, AadhaarNumber, department, Scheme);
+            bool str = DBBeneficiary.SaveBeneficiary(id,BeneficiaryName, Address, AadhaarNumber, department, Scheme);
             return str;
         }
         public static DataTable LoadDepartment()

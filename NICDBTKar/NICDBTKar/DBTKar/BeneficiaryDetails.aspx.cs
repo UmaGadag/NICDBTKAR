@@ -125,7 +125,8 @@ namespace NICDBTKar.DBTKar
                     return;
                 }
                 BSBeneficiary bSBeneficiary = new BSBeneficiary();
-                if (bSBeneficiary.SaveBeneficiary(txtBname.Text, txtAddress.Text, HashAadhar, ddlDepartment.SelectedItem.Text, ddlScheme.SelectedItem.Text) == true)
+                if 
+                if (bSBeneficiary.SaveBeneficiary(0,txtBname.Text, txtAddress.Text, HashAadhar, ddlDepartment.SelectedItem.Text, ddlScheme.SelectedItem.Text) == true)
                 {
                     Response.Write("Record inserted successfully....");
                     clear();

@@ -16,7 +16,10 @@ namespace NICDBTKar.DBTKar
     public partial class UserLogin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { if (!IsPostBack)
+            { 
+            clear();
+            }
 
         }
 
@@ -25,6 +28,7 @@ namespace NICDBTKar.DBTKar
             
             try
             {
+                lblError.Text = string.Empty;
                 if (txtUsername.Text == string.Empty)
                 {
                     lblError.Text = "please enter username";
@@ -41,8 +45,12 @@ namespace NICDBTKar.DBTKar
                     Response.Redirect("Default.aspx", false);
                     clear();
                 }
-
-
+                else
+                {
+                    lblError.Text = "Invalid Username and password";
+                    lblError.Visible = true;
+                    return;
+                }
                 
             }
             catch (Exception ex)

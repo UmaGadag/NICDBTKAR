@@ -96,15 +96,15 @@ input[type=submit]:hover {
   </div>
           </div>
       <div class="row">
-  <div class="col-75">
+   <div class="col-25">
       <asp:TextBox ID="txtsearch" runat="server" name="search" ></asp:TextBox>
       <asp:RequiredFieldValidator ID="reqSearch" ControlToValidate="txtsearch" ValidationGroup="search"
         runat="server" ErrorMessage="please enter to search"></asp:RequiredFieldValidator>
-  </div>
-  <div class="col-25">
-      <asp:Button ID="btnsearch" runat="server" type="submit" Text="search" ValidationGroup="search" Onclick="search_Click" />
+       </div>
+          <div class="col-25">
+  <asp:Button ID="btnsearch" runat="server" Text="search"  ValidationGroup="search" Onclick="search_Click" />
+              </div>
 
-   </div>
 </div>
     <div class="row">
       <div class="col-25">
@@ -146,7 +146,8 @@ input[type=submit]:hover {
         <label for="Department">Department</label>
       </div>
       <div class="col-75">
-          <asp:DropDownList id="ddlDepartment" runat="server" EnableViewState="true" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="True" onchange="showAddress_Byamit(); return false" ValidationGroup="submit"></asp:DropDownList>
+          <asp:DropDownList id="ddlDepartment" runat="server"  DataTextField="0" DataValueField="--Select Department--" 
+                    onselectedindexchanged="ddlDepartment_SelectedIndexChanged" AutoPostBack = "true"></asp:DropDownList>
       <br />
           <asp:RequiredFieldValidator id="reqDepartment"  InitialValue="0" ValidationGroup="submit"
               ControlToValidate="ddlDepartment" Runat="server" ErrorMessage="*Please select department" CssClass="red"/> 

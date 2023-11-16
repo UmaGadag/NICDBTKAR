@@ -89,13 +89,14 @@ input[type=submit]:hover {
 
 
   <form name="BD" runat="server">
-      <div >
-  <div class="col-25">
+     <div class="row">
+  <div class="col-75">
       
       <asp:Label ID="lblError" runat="server" Text="Label" ForeColor="red" Visible="false"></asp:Label>
    
   </div>
-          </div>
+         </div>
+          <br />
       
     <div class="row">
       <div class="col-25">

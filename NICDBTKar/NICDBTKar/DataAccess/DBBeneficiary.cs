@@ -19,17 +19,7 @@ namespace NICDBTKar.DataAccess
             {
                 SqlCommand cmd = new SqlCommand("sp_InsertUpdateBENEFICIARY_DETAILS", con);
                 con.Open();
-                if (Id > 0)
-                {
-                    cmd.Parameters.AddWithValue("@BeneficiaryID", Id);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@BeneficiaryID", null);
-                }
-
-                
-                cmd.Parameters.AddWithValue("@BeneficiaryName", BeneficiaryName);
+                cmd.Parameters.AddWithValue("@BeneficiaryID", Id);
                 cmd.Parameters.AddWithValue("@BeneficiaryName", BeneficiaryName);
                 cmd.Parameters.AddWithValue("@Address",Address);
                 cmd.Parameters.AddWithValue("@AadhaarNumber",AadhaarNumber);
@@ -74,13 +64,13 @@ namespace NICDBTKar.DataAccess
                 return dt;
             }
         }
-        public static DataTable Scheme()
+        public static DataTable Scheme(int DepartmentID)
         {
             string strcon = ConfigurationManager.ConnectionStrings["NICDBTKar"].ConnectionString;
             using (SqlConnection con = new SqlConnection(strcon))
             {
-                SqlCommand cmd = new SqlCommand("Select 0[SchemeID],'--Select Scheme--'[SchemeName] UNION Select SchemeID,SchemeName from SCHEMES_MASTER ", con);
-               // cmd.Parameters.AddWithValue("@DeprtmentId", DepartmentID);
+                SqlCommand cmd = new SqlCommand("Select 0[SchemeID],'--Select Scheme--'[SchemeName] UNION Select SchemeID,SchemeName from SCHEMES_MASTER  Where DepartmentID=@DeprtmentId", con);
+               cmd.Parameters.AddWithValue("@DeprtmentId", DepartmentID);
                 con.Open();
                 cmd.CommandType = System.Data.CommandType.Text;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);

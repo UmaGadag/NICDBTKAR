@@ -29,9 +29,9 @@ namespace NICDBTKar.Business
             DataTable dt = DBBeneficiary.Department();
             return dt;
         }
-        public static DataTable LoadScheme()
+        public static DataTable LoadScheme(int dept)
         {
-            DataTable dt = DBBeneficiary.Scheme();
+            DataTable dt = DBBeneficiary.Scheme(dept);
             return dt;
         }
         public static DataTable LoadBeneficiaryDetail(string search) // No Parameter  

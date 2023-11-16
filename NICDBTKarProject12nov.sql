@@ -1,5 +1,5 @@
---Create database [NICDBTKar];
---Go
+Create database [NICDBTKar];
+Go
 
 Create Table USER_MASTER(
 	ID int Identity(1,1) NOT NULL,
@@ -81,7 +81,7 @@ BEGIN
     Select @SchemeID=SchemeID From SCHEMES_MASTER Where SchemeName=@SchemeName;
 
     -- Insert statements for procedure here
-	IF NOT EXISTS( SELECT BeneficiaryID FROM BENEFICIARY_DETAILS where AadhaarNumber=@AadhaarNumber AND @BeneficiaryID=Null) 
+	IF NOT EXISTS( SELECT BeneficiaryID FROM BENEFICIARY_DETAILS where AadhaarNumber=@AadhaarNumber AND BeneficiaryName=@BeneficiaryName) 
 	BEGIN 
 		INSERT INTO BENEFICIARY_DETAILS
 		(
@@ -103,7 +103,6 @@ BEGIN
 	END
 	ELSE 
 	BEGIN 
-	SELECT @BeneficiaryID=BeneficiaryID FROM BENEFICIARY_DETAILS where AadhaarNumber=@AadhaarNumber
 		Update BENEFICIARY_DETAILS
 		SET DepartmentID=@DeptID,
 		    SchemeID=@SchemeID
@@ -125,11 +124,9 @@ BEGIN
 	SELECT BD.BeneficiaryID,BD.BeneficiaryName,
 	    BD.Address,
 	    BD.AadhaarNumber,
-		DM.DepartmentName,
-		SM.SchemeName
+		BD.DepartmentID,
+		BD.SchemeID
 	FROM BENEFICIARY_DETAILS BD
-	INNER JOIN DEPARTMENT_MASTER DM On DM.DepartmentID=BD.DepartmentID
-    INNER JOIN SCHEMES_MASTER SM on SM.SchemeID=BD.SchemeID
 	where (AadhaarNumber=@search) OR (BeneficiaryName=@search)
 	
 
